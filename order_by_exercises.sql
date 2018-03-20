@@ -33,7 +33,7 @@ WHERE last_name LIKE '%e%'
 ORDER BY emp_no DESC;
 
 # 7
-SELECT *
+SELECT first_name, last_name
 FROM employees
-WHERE birth_date LIKE '%12-25'
-ORDER BY hire_date DESC, birth_date DESC;
+WHERE birth_date LIKE '%-12-25' AND hire_date LIKE '199%'
+ORDER BY birth_date, hire_date DESC
