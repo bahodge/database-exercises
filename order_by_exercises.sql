@@ -1,7 +1,11 @@
 USE employees;
 # 1 File CREATED
 
-# 2 SKIPPED, BROKEN! :(
+# 2 Order By first name!
+SELECT *
+FROM employees
+WHERE first_name IN('Irena', 'Vidya', 'Maya')
+ORDER BY first_name ASC;
 
 # 3
 SELECT *
