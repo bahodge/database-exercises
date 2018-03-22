@@ -1,0 +1,51 @@
+use adlister_test_db;
+
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS ads;
+DROP TABLE IF EXISTS media;
+DROP TABLE IF EXISTS ads_categories;
+DROP TABLE IF EXISTS categories;
+
+
+DESCRIBE users;
+DESCRIBE ads;
+DESCRIBE media;
+
+CREATE TABLE users (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  email VARCHAR(100) NOT NULL UNIQUE,
+  password VARCHAR(50) NOT NULL,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE ads (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  users_id INT UNSIGNED NOT NULL,
+  title VARCHAR(100) NOT NULL,
+  description TEXT NOT NULL,
+  price DECIMAL(10,2) UNSIGNED NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (users_id) REFERENCES users(id)
+);
+
+CREATE TABLE media (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  ad_id INT UNSIGNED NOT NULL,
+  media TEXT NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (ad_id) REFERENCES ads(id)
+);
+
+CREATE TABLE categories (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  cat_name VARCHAR(50) NOT NULL,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE ads_categories (
+  ad_id INT UNSIGNED NOT NULL ,
+  cat_id INT UNSIGNED NOT NULL ,
+  FOREIGN KEY (ad_id) REFERENCES ads(id),
+  FOREIGN KEY (cat_id) REFERENCES categories(id)
+);
+
